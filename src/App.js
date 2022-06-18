@@ -1,37 +1,24 @@
 import './App.css';
-import {getUsers} from "./components/userFetcher";
-import {useEffect, useState} from "react";
-import User from "./components/User";
-import NewUser from "./components/NewUser";
-import actions from "./components/actions";
-import Action from "./components/Action";
+import {Provider} from 'react-redux'
+import {store} from './redux/store'
+import Router from "./router/Router";
+import {BrowserRouter} from "react-router-dom";
 
 function App() {
-  const [users, setUsers] = useState([]);
-  useEffect(() => {
-    getUsers().then(users => {
-      setUsers(users.data);
-      console.log(users.data);
-    })
-  }, []);
   return (
-    <div className="App">
+    <Provider store={store}>
+      <BrowserRouter>
       <header>
-        JD
+        HubApp
       </header>
       <main>
-        <div>
-          <NewUser addUser={user => setUsers([...users, user])}/>
-          {users.map(user => <User key={user.id} name={user.name} createdAt={user.createdAt}
-                                   deductedPoints={user.deductedPoints}/>)}
-          <button onClick={getUsers}>Get Users</button>
-        </div>
-        <div>
-          {actions.map((action, index) => <Action key={index} name={action.name}
-                                                  onClick={() => console.log(action.name)}/>)}
-        </div>
+        <Router/>
       </main>
-    </div>
+      <footer>
+        By Marcin
+      </footer>
+      </BrowserRouter>
+    </Provider>
   );
 }
 
