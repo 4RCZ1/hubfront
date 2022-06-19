@@ -1,4 +1,4 @@
-import {addPointsAsync, selectUser} from "../redux/userSlice";
+import {addPointAsync, selectUser} from "../redux/userSlice";
 import {useAppSelector} from "../redux/hooks";
 import Actions from "../components/main/Actions";
 import {useEffect} from "react";
@@ -8,7 +8,7 @@ const Main = () => {
   const dispatch = useDispatch();
   const user = useAppSelector(selectUser);
   useEffect(() => {
-    const timer = setInterval(() => {dispatch(addPointsAsync(user.name))}, 10000);
+    const timer = setInterval(() => {dispatch(addPointAsync(user.name))}, 10000);
     return () => clearInterval(timer);
   }, [])
   return (

@@ -8,15 +8,15 @@ function App() {
   return (
     <Provider store={store}>
       <BrowserRouter>
-      <header>
-        HubApp
-      </header>
-      <main>
-        <Router/>
-      </main>
-      <footer>
-        By Marcin
-      </footer>
+        <header>
+          HubApp
+        </header>
+        <main>
+          <Router/>
+        </main>
+        <footer>
+          By Marcin
+        </footer>
       </BrowserRouter>
     </Provider>
   );

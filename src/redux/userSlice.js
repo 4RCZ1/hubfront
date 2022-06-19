@@ -25,30 +25,21 @@ export const signupAsync = createAsyncThunk(
   }
 );
 
-export const addPointsAsync = createAsyncThunk(
+export const addPointAsync = createAsyncThunk(
   'user/addPointsAsync',
   async (name) => {
     console.log(name)
-    return await axios.post(baseUrl + 'addPoints', {name});
+    return await axios.post(baseUrl + 'addPoint', {name});
   }
 );
 
 export const deductPointsAsync = createAsyncThunk(
   'user/deductPointsAsync',
   async ({name, points}) => {
-    return await axios.post(baseUrl + 'deductPoints', {name, points});
+    await axios.post(baseUrl + 'deductPoints', {name, points});
+    return points
   }
 )
-// const getUserInfoAsync = createAsyncThunk(
-//   'user/getUserInfoAsync',
-//   async (token: string) => {
-//     const sdk = new SSPlatformSDK(
-//       "https://2qvx3i4fd7.execute-api.us-east-1.amazonaws.com/dev",
-//       new ProdDependencies()
-//     );
-//     return await sdk.getUserInfo(token);
-//   }
-// );
 
 export const userSlice = createSlice({
   name: 'user',
@@ -85,14 +76,14 @@ export const userSlice = createSlice({
       .addCase(signupAsync.rejected, (state) => {
         state.status = 'failed';
       })
-      .addCase(addPointsAsync.pending, (state) => {
+      .addCase(addPointAsync.pending, (state) => {
         state.status = 'loading';
       })
-      .addCase(addPointsAsync.fulfilled, (state, action) => {
+      .addCase(addPointAsync.fulfilled, (state, action) => {
         state.status = 'idle';
-        state.points = action.payload.data.points;
+        state.points += 1;
       })
-      .addCase(addPointsAsync.rejected, (state) => {
+      .addCase(addPointAsync.rejected, (state) => {
         state.status = 'failed';
       })
       .addCase(deductPointsAsync.pending, (state) => {
@@ -100,7 +91,7 @@ export const userSlice = createSlice({
       })
       .addCase(deductPointsAsync.fulfilled, (state, action) => {
         state.status = 'idle';
-        state.points = action.payload.data.points;
+        state.points -= action.payload;
       })
       .addCase(deductPointsAsync.rejected, (state) => {
         state.status = 'failed';

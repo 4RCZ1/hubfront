@@ -2,13 +2,14 @@ import {loginAsync, selectUser, signupAsync} from "../redux/userSlice";
 import {useDispatch} from "react-redux";
 import {useAppSelector} from "../redux/hooks";
 import {useNavigate} from "react-router";
+import {paths} from "../router/Router";
 
 const Login = () => {
   const dispatch = useDispatch();
   const user = useAppSelector(selectUser);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   if(user.isLoggedIn){
-    navigate('/main')
+    navigate(paths.main)
   }
   const login = () => {
     const name = document.getElementById("name").value;
