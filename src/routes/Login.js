@@ -22,12 +22,13 @@ const Login = () => {
   return (
     <div>
       <h1>Login</h1>
+      {user.status === 'failed'? <h3>Login failed</h3>: null}
         <label>
           Name:
           <input type="text" name="name" id="name"/>
         </label>
-      <button onClick={login}>Login</button>
-      <button onClick={signup}>Signup</button>
+      <button onClick={login} disabled={user.status === 'loading'}>Login</button>
+      <button onClick={signup} disabled={user.status === 'loading'}>Signup</button>
     </div>
   );
 }

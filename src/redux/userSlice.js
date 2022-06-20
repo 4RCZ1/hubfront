@@ -1,9 +1,9 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import axios from "axios";
 
-// const root = 'http://localhost:3001/'
-const root = 'https://hubeventsapp.herokuapp.com/'
-const baseUrl = root+"users/"
+const root = 'http://localhost:3001/'
+// const root = 'https://hubeventsapp.herokuapp.com/'
+const baseUrl = root + "users/"
 
 const initialState = {
   status: 'idle',
@@ -21,7 +21,7 @@ export const loginAsync = createAsyncThunk(
 export const signupAsync = createAsyncThunk(
   'user/signupAsync',
   async (name) => {
-    return await axios.post(baseUrl + 'signup', {name,points:0});
+    return await axios.post(baseUrl + 'signup', {name, points: 0});
   }
 );
 
@@ -36,10 +36,13 @@ export const addPointAsync = createAsyncThunk(
 export const deductPointsAsync = createAsyncThunk(
   'user/deductPointsAsync',
   async ({name, points}) => {
-    await axios.post(baseUrl + 'deductPoints', {name, points});
-    return points
+    const result = await axios.post(baseUrl + 'deductPoints', {name, points});
+    if (result.data.error) {
+      return 0;
+    }
+    return points;
   }
-)
+);
 
 export const userSlice = createSlice({
   name: 'user',
@@ -56,16 +59,14 @@ export const userSlice = createSlice({
       })
       .addCase(loginAsync.fulfilled, (state, action) => {
         console.log(action.payload);
-        if(action.payload.data.error){
+        if (action.payload.data.error) {
           state.status = 'failed';
-        }else{
+        } else {
           state.status = 'idle';
           state.isLoggedIn = true;
           state.name = action.payload.data.name;
           state.points = action.payload.data.points;
         }
-
-
       })
       .addCase(loginAsync.rejected, (state) => {
         state.status = 'failed';
@@ -95,8 +96,12 @@ export const userSlice = createSlice({
         state.status = 'loading';
       })
       .addCase(deductPointsAsync.fulfilled, (state, action) => {
-        state.status = 'idle';
-        state.points -= action.payload;
+        if (action.payload) {
+          state.status = 'idle';
+          state.points -= action.payload;
+        }else{
+          state.status = 'failed';
+        }
       })
       .addCase(deductPointsAsync.rejected, (state) => {
         state.status = 'failed';
