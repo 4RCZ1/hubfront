@@ -1,8 +1,8 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import axios from "axios";
 
-const root = 'http://localhost:3001/'
-// const root = 'https://hubeventsapp.herokuapp.com/'
+// const root = 'http://localhost:3001/'
+const root = 'https://hubeventsapp.herokuapp.com/'
 const baseUrl = root + "events/"
 
 const initialState = {
