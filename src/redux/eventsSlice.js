@@ -1,8 +1,8 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import axios from "axios";
 
-//const root = 'http://localhost:3001/'
-const root = 'https://hubeventsapp.herokuapp.com/'
+const root = 'http://localhost:3001/'
+// const root = 'https://hubeventsapp.herokuapp.com/'
 const baseUrl = root + "events/"
 
 const initialState = {
@@ -20,15 +20,16 @@ export const getEventsAsync = createAsyncThunk(
 export const addEventAsync = createAsyncThunk(
   'events/addEventAsync',
   async (event) => {
-    await axios.post(baseUrl, event);
-    return event;
+    console.log(event)
+    const response = await axios.post(baseUrl, event);
+    return {...event, _id:response.insertedId};
   }
 );
 //remove event by id
 export const removeEventAsync = createAsyncThunk(
   'events/removeEventAsync',
   async (id) => {
-    await axios.delete(baseUrl + id);
+    await axios.post(baseUrl+'remove',{id});
     return id;
   }
 );
@@ -52,14 +53,14 @@ export const userSlice = createSlice({
     }).addCase(addEventAsync.pending, (state) => {
       state.status = 'loading';
     }).addCase(addEventAsync.fulfilled, (state, action) => {
-      state.events.push(action.payload.data);
+      state.events.push(action.payload);
       state.status = 'idle';
     }).addCase(addEventAsync.rejected, (state) => {
       state.status = 'failed';
     }).addCase(removeEventAsync.pending, (state) => {
       state.status = 'loading';
     }).addCase(removeEventAsync.fulfilled, (state, action) => {
-      state.events = state.events.filter(event => event.id !== action.payload.data.id);
+      state.events = state.events.filter(event => event.id !== action.payload.insertedId);
       state.status = 'idle';
     });
 
