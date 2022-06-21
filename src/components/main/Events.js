@@ -1,5 +1,6 @@
 import {selectEvents} from "../../redux/eventsSlice";
 import Action from "../Action";
+import {useAppSelector} from "../../redux/hooks";
 
 const Events = () => {
   const events = useAppSelector(selectEvents);
