@@ -5,7 +5,7 @@ import {selectUser} from "../../redux/userSlice";
 import {addEventAsync} from "../../redux/eventsSlice";
 
 
-const Action = ({name, cost}) => {
+const Action = ({name, cost, color}) => {
   const user = useAppSelector(selectUser);
   const dispatch = useDispatch();
   const deductPoints = () => {
@@ -13,7 +13,7 @@ const Action = ({name, cost}) => {
     dispatch(addEventAsync({name:name,owner:user.name}));
   }
   return (
-    <div className={'action'}>
+    <div className={'action'} style={{backgroundColor:color}}>
       <div>
         <h1>{name}</h1>
         <h2>cost: {cost}</h2>

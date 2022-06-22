@@ -13,7 +13,7 @@ const Actions = () => {
       <div className={'actions'}>
         {actions.map(action => {
           if (action.name.toLowerCase().includes(filter))
-            return <Action key={action.name} name={action.name} cost={action.cost}/>
+            return <Action key={action.name} name={action.name} cost={action.cost} color={action.color}/>
           return null;
         })}
       </div>
