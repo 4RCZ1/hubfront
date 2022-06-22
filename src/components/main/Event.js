@@ -12,8 +12,10 @@ const Event = ({id,name,owner}) => {
   }
   return (
     <div className={'action'}>
-      <h1>{name}</h1>
-      <h2>owner:{owner}</h2>
+      <div>
+        <h1>{name}</h1>
+        <h2>owner: {owner}</h2>
+      </div>
       {owner === username ? <button onClick={removeEvent} disabled={status!=='idle'}>Remove</button> : null}
     </div>
   )

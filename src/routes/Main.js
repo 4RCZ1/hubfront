@@ -1,7 +1,7 @@
 import {addPointAsync, selectUser} from "../redux/userSlice";
 import {useAppSelector} from "../redux/hooks";
 import Actions from "../components/main/Actions";
-import {useEffect} from "react";
+import {Fragment, useEffect} from "react";
 import {useDispatch} from "react-redux";
 import Events from "../components/main/Events";
 
@@ -13,11 +13,12 @@ const Main = () => {
     // return () => clearInterval(timer);
   }, [])
   return (
-    <div>
+    <Fragment>
       <h1>Name: {user.name}</h1>
       <h2>Points: {user.points}</h2>
       <Actions />
-    </div>
+      <Events />
+    </Fragment>
   );
 }
 export default Main;

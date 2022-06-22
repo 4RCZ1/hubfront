@@ -10,11 +10,13 @@ const Actions = () => {
     <div>
       <input className={"search"} placeholder="Search for Action"
              onChange={e => setFilter(e.currentTarget.value.toLowerCase())} type={"text"}/>
-      {actions.map(action => {
-        if (action.name.toLowerCase().includes(filter))
-          return <Action key={action.name} name={action.name} cost={action.cost}/>
-        return null;
-      })}
+      <div className={'actions'}>
+        {actions.map(action => {
+          if (action.name.toLowerCase().includes(filter))
+            return <Action key={action.name} name={action.name} cost={action.cost}/>
+          return null;
+        })}
+      </div>
     </div>
   )
 }

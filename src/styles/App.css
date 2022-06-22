@@ -10,7 +10,7 @@ body{
   min-height: 100vh;
 }
 header{
-  background-color: #1677cf;
+  background-color: #3194ee;
   padding: 10px;
   min-height: 5vh;
 }
@@ -20,6 +20,7 @@ main{
   flex-grow:1;
   justify-content: center;
   align-items: center;
+  background: #d9d9d9;
 }
 .container{
   background-color: rgba(216, 221, 251, 0.58);
@@ -34,4 +35,27 @@ footer{
 }
 .error{
   color: red;
+}
+.actions{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content:space-around;
+}
+.action{
+  width: clamp(200px, 20vw, 500px);
+  border-radius:10px;
+  background-color: #3194ee;
+  margin:10px;
+  padding:10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 200px;
+}
+.action h1,h2{
+  margin:0;
+}
+.action button{
+  margin:10px;
 }
