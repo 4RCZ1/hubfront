@@ -17,7 +17,6 @@ const Main = () => {
       <h1>Name: {user.name}</h1>
       <h2>Points: {user.points}</h2>
       <Actions />
-      <Events />
     </div>
   );
 }

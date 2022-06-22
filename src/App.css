@@ -1,5 +1,37 @@
-main {
+#root{
+  min-height: 100vh;
+  display:flex;
+  flex-direction:column;
+}
+body{
+  text-align: center;
+  background-color: whitesmoke;
+  font-size: 150%;
+  min-height: 100vh;
+}
+header{
+  background-color: #1677cf;
+  padding: 10px;
+  min-height: 5vh;
+}
+main{
   display:flex;
   flex-direction:column;
   flex-grow:1;
+  justify-content: center;
+  align-items: center;
+}
+.container{
+  background-color: rgba(216, 221, 251, 0.58);
+  padding: 7%;
+  border-radius: 50px;
+  box-shadow: 10px 5px 4px 2px #9b27b0;
+}
+footer{
+  background-color: #9b27b0;
+  padding: 10px;
+  min-height: 5vh;
+}
+.error{
+  color: red;
 }
