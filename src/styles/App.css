@@ -43,7 +43,7 @@ footer{
   justify-content:space-around;
 }
 .action{
-  width: clamp(200px, 20vw, 500px);
+  width: clamp(300px, 20vw, 500px);
   border-radius:10px;
   background-color: #3194ee;
   margin:10px;
@@ -52,6 +52,7 @@ footer{
   flex-direction: column;
   justify-content: space-between;
   min-height: 200px;
+  word-wrap: break-word;
 }
 .action h1,h2{
   margin:0;
