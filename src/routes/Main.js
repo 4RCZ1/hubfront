@@ -9,8 +9,8 @@ const Main = () => {
   const dispatch = useDispatch();
   const user = useAppSelector(selectUser);
   useEffect(() => {
-    const timer = setInterval(() => {dispatch(addPointAsync(user.name))}, 10000);
-    return () => clearInterval(timer);
+    // const timer = setInterval(() => {dispatch(addPointAsync(user.name))}, 10000);
+    // return () => clearInterval(timer);
   }, [])
   return (
     <div>

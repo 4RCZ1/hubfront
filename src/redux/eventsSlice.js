@@ -34,7 +34,7 @@ export const removeEventAsync = createAsyncThunk(
   }
 );
 
-export const userSlice = createSlice({
+export const eventsSlice = createSlice({
   name: 'events',
   initialState,
   reducers: {
@@ -60,8 +60,13 @@ export const userSlice = createSlice({
     }).addCase(removeEventAsync.pending, (state) => {
       state.status = 'loading';
     }).addCase(removeEventAsync.fulfilled, (state, action) => {
-      state.events = state.events.filter(event => event.id !== action.payload.insertedId);
+      console.log(state.events)
+      state.events = state.events.filter(event => event._id !== action.payload);
       state.status = 'idle';
+      console.log(state.events)
+    })
+    .addCase(removeEventAsync.rejected, (state) => {
+      state.status = 'failed';
     });
 
   },
@@ -69,4 +74,4 @@ export const userSlice = createSlice({
 
 export const selectEvents = (state) => state.events;
 
-export default userSlice.reducer;
+export default eventsSlice.reducer;

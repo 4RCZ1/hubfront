@@ -10,7 +10,6 @@ const Events = () => {
   useEffect(() => {
     dispatch(getEventsAsync());
   }, [])
-  console.log(events.events)
   return (
     <div>
       <h1>Events</h1>

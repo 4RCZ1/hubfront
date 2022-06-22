@@ -15,8 +15,8 @@ const Action = ({name, cost}) => {
   return (
     <div className={'action'}>
       <h1>{name}</h1>
-      <h2>cost:{cost}</h2>
-      <button onClick={deductPoints}>{name}</button>
+      <h2>cost: {cost}</h2>
+      <button onClick={deductPoints}>Buy</button>
     </div>
   )
 }
