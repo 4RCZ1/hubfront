@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-const baseUrl = process.env.BASE_URL || 'http://localhost:3001/'
-// const baseUrl = 'https://hubeventsapp.herokuapp.com/'
+// const baseUrl = process.env.BASE_URL || 'http://localhost:3001/'
+const baseUrl = 'https://hubeventsapp.herokuapp.com/'
 
 const routes = {
   events: baseUrl + "events/",

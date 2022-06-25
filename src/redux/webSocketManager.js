@@ -2,8 +2,8 @@ import {addEvent, removeEventById} from "./eventsSlice";
 import {useDispatch} from "react-redux";
 import {useEffect} from "react";
 
-const baseUrl = process.env.BASE_WEBSOCKET || 'ws://localhost:3001/'
-// const baseUrl = 'wss://hubeventsapp.herokuapp.com/'
+// const baseUrl = process.env.BASE_WEBSOCKET || 'ws://localhost:3001/'
+const baseUrl = 'wss://hubeventsapp.herokuapp.com/'
 
 const WebSocketManager = () => {
   const dispatch = useDispatch();
