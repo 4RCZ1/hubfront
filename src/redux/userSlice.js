@@ -1,9 +1,5 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
-import axios from "axios";
-
-// const root = 'http://localhost:3001/'
-const root = 'https://hubeventsapp.herokuapp.com/'
-const baseUrl = root + "users/"
+import {usersApi} from "./api";
 
 const initialState = {
   status: 'idle',
@@ -14,29 +10,31 @@ const initialState = {
 export const loginAsync = createAsyncThunk(
   'user/loginAsync',
   async (name) => {
-    return await axios.post(baseUrl + 'login', {name});
+    const response = await usersApi.login(name);
+    return response.data;
   }
 );
 
 export const signupAsync = createAsyncThunk(
   'user/signupAsync',
   async (name) => {
-    return await axios.post(baseUrl + 'signup', {name, points: 0});
+    const response = await usersApi.signup(name);
+    return response.data;
   }
 );
 
 export const addPointAsync = createAsyncThunk(
   'user/addPointsAsync',
   async (name) => {
-    const response = await axios.post(baseUrl + 'addPoint', {name});
-    return response;
+    const response = await usersApi.addPoint(name);
+    return response.data;
   }
 );
 
 export const deductPointsAsync = createAsyncThunk(
   'user/deductPointsAsync',
   async ({name, points}) => {
-    const result = await axios.post(baseUrl + 'deductPoints', {name, points});
+    const result = await usersApi.deductPoints(name, points);
     if (result.data.error) {
       return 0;
     }
@@ -59,13 +57,13 @@ export const userSlice = createSlice({
       })
       .addCase(loginAsync.fulfilled, (state, action) => {
         console.log(action.payload);
-        if (action.payload.data.error) {
+        if (action.payload.error) {
           state.status = 'failed';
         } else {
           state.status = 'idle';
           state.isLoggedIn = true;
-          state.name = action.payload.data.name;
-          state.points = action.payload.data.points;
+          state.name = action.payload.name;
+          state.points = action.payload.points;
         }
       })
       .addCase(loginAsync.rejected, (state) => {
