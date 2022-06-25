@@ -5,7 +5,6 @@ import {useNavigate} from "react-router";
 import {paths} from "../router/Router";
 import Button from '@mui/material/Button';
 import LoginIcon from '@mui/icons-material/Login';
-import PersonIcon from '@mui/icons-material/Person';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import TextField from '@mui/material/TextField';
 

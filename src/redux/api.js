@@ -1,7 +1,8 @@
 import axios from 'axios';
 
-// const baseUrl = 'http://localhost:3001/'
-const baseUrl = 'https://hubeventsapp.herokuapp.com/'
+const baseUrl = process.env.BASE_URL || 'http://localhost:3001/'
+// const baseUrl = 'https://hubeventsapp.herokuapp.com/'
+
 const routes = {
   events: baseUrl + "events/",
   users: baseUrl + "users/",
@@ -20,3 +21,5 @@ export const usersApi = {
   deductPoints: (name, points) => axios.post(routes.users + 'deductPoints', {name, points}),
   getUsers: () => axios.get(routes.users),
 }
+
+

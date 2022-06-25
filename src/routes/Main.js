@@ -4,6 +4,7 @@ import Actions from "../components/main/Actions";
 import {Fragment, useEffect} from "react";
 import {useDispatch} from "react-redux";
 import Events from "../components/main/Events";
+import WebSocketManager from "../redux/webSocketManager";
 
 const Main = () => {
   const dispatch = useDispatch();
@@ -16,6 +17,7 @@ const Main = () => {
     <Fragment>
       <h1>Name: {user.name}</h1>
       <h2>Points: {user.points}</h2>
+      <WebSocketManager/>
       <Actions />
       <Events />
     </Fragment>
